@@ -1,0 +1,1494 @@
+definitions:
+  dto.AuthorizeUserDto:
+    properties:
+      email:
+        maxLength: 64
+        minLength: 6
+        type: string
+      password:
+        maxLength: 64
+        minLength: 6
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dto.BindTokenDto:
+    properties:
+      token:
+        type: string
+    required:
+    - token
+    type: object
+  dto.ChangeUserPasswordDto:
+    properties:
+      new_password:
+        maxLength: 64
+        minLength: 6
+        type: string
+      old_password:
+        maxLength: 64
+        minLength: 6
+        type: string
+    required:
+    - new_password
+    - old_password
+    type: object
+  dto.CreatePlaceDto:
+    properties:
+      address:
+        maxLength: 300
+        minLength: 1
+        type: string
+      city:
+        maxLength: 300
+        minLength: 1
+        type: string
+      description:
+        maxLength: 300
+        minLength: 1
+        type: string
+      name:
+        maxLength: 300
+        minLength: 1
+        type: string
+    required:
+    - address
+    - city
+    - description
+    - name
+    type: object
+  dto.CreatePostDto:
+    properties:
+      author:
+        maxLength: 100
+        minLength: 1
+        type: string
+      condition:
+        maxLength: 40
+        minLength: 1
+        type: string
+      cover:
+        maxLength: 60
+        minLength: 0
+        type: string
+      description:
+        maxLength: 500
+        minLength: 1
+        type: string
+      genre:
+        maxLength: 30
+        minLength: 1
+        type: string
+      pages_count:
+        type: integer
+      place_id:
+        type: integer
+      publication_year:
+        minimum: 0
+        type: integer
+      publisher:
+        maxLength: 100
+        minLength: 1
+        type: string
+      title:
+        maxLength: 300
+        minLength: 1
+        type: string
+    required:
+    - author
+    - title
+    type: object
+  dto.CreateUserDto:
+    properties:
+      email:
+        maxLength: 64
+        minLength: 6
+        type: string
+      password:
+        maxLength: 64
+        minLength: 6
+        type: string
+      telegram_username:
+        maxLength: 32
+        minLength: 4
+        type: string
+      username:
+        maxLength: 32
+        minLength: 6
+        type: string
+    required:
+    - email
+    - password
+    - username
+    type: object
+  dto.GetUserDto:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      is_admin:
+        type: boolean
+      telegram_username:
+        maxLength: 32
+        minLength: 4
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  dto.PlaceDto:
+    properties:
+      address:
+        maxLength: 300
+        minLength: 1
+        type: string
+      city:
+        maxLength: 300
+        minLength: 1
+        type: string
+      description:
+        maxLength: 300
+        minLength: 1
+        type: string
+      id:
+        type: integer
+      name:
+        maxLength: 300
+        minLength: 1
+        type: string
+    required:
+    - address
+    - city
+    - description
+    - name
+    type: object
+  dto.PostDto:
+    properties:
+      author:
+        maxLength: 100
+        minLength: 1
+        type: string
+      condition:
+        maxLength: 40
+        minLength: 1
+        type: string
+      cover:
+        maxLength: 60
+        minLength: 0
+        type: string
+      created_at:
+        type: string
+      description:
+        maxLength: 500
+        minLength: 1
+        type: string
+      genre:
+        maxLength: 30
+        minLength: 1
+        type: string
+      id:
+        type: integer
+      images:
+        items:
+          type: string
+        maxItems: 5
+        minItems: 0
+        type: array
+      is_favorite:
+        type: boolean
+      owner_username:
+        type: string
+      pages_count:
+        type: integer
+      place_address:
+        type: string
+      place_id:
+        type: integer
+      place_name:
+        type: string
+      publication_year:
+        type: integer
+      publisher:
+        maxLength: 100
+        minLength: 1
+        type: string
+      quote:
+        type: string
+      status:
+        type: string
+      summary:
+        type: string
+      title:
+        maxLength: 300
+        minLength: 1
+        type: string
+      user_email:
+        maxLength: 64
+        minLength: 6
+        type: string
+    required:
+    - author
+    - condition
+    - description
+    - genre
+    - images
+    - publication_year
+    - publisher
+    - status
+    - title
+    - user_email
+    type: object
+  dto.PostToGetDto:
+    properties:
+      author:
+        maxLength: 100
+        minLength: 1
+        type: string
+      condition:
+        maxLength: 40
+        minLength: 1
+        type: string
+      cover:
+        maxLength: 60
+        minLength: 0
+        type: string
+      created_at:
+        type: string
+      description:
+        maxLength: 500
+        minLength: 1
+        type: string
+      genre:
+        maxLength: 30
+        minLength: 1
+        type: string
+      id:
+        type: integer
+      images:
+        items:
+          type: string
+        maxItems: 5
+        minItems: 0
+        type: array
+      is_favorite:
+        type: boolean
+      pages_count:
+        type: integer
+      place_id:
+        type: integer
+      publication_year:
+        type: integer
+      publisher:
+        maxLength: 100
+        minLength: 1
+        type: string
+      status:
+        type: string
+      title:
+        maxLength: 300
+        minLength: 1
+        type: string
+      user_email:
+        maxLength: 64
+        minLength: 6
+        type: string
+    required:
+    - author
+    - condition
+    - description
+    - genre
+    - images
+    - publication_year
+    - publisher
+    - status
+    - title
+    - user_email
+    type: object
+  dto.Response:
+    properties:
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+  dto.ReviewToCreateDto:
+    properties:
+      comment:
+        maxLength: 500
+        type: string
+      rating:
+        maximum: 5
+        type: integer
+      target_user_email:
+        type: string
+    required:
+    - target_user_email
+    type: object
+  dto.ReviewToGetDto:
+    properties:
+      comment:
+        maxLength: 500
+        minLength: 1
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      rating:
+        maximum: 5
+        minimum: 1
+        type: integer
+      reviewer_user_email:
+        type: string
+      reviewer_username:
+        type: string
+      target_user_email:
+        type: string
+    required:
+    - rating
+    - reviewer_user_email
+    - target_user_email
+    type: object
+  dto.UpdateUserDto:
+    properties:
+      password:
+        type: string
+      telegram_username:
+        maxLength: 32
+        minLength: 4
+        type: string
+      updated_at:
+        description: sets in service automatically
+        type: string
+      username:
+        maxLength: 32
+        minLength: 6
+        type: string
+    type: object
+  dto.UserWithRatingDto:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      is_admin:
+        type: boolean
+      rating:
+        type: number
+      telegram_username:
+        maxLength: 32
+        minLength: 4
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  exceptions.Error_:
+    properties:
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /auth:
+    post:
+      consumes:
+      - application/json
+      description: Authorizes user and returns JWT
+      parameters:
+      - description: User credentials
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/dto.AuthorizeUserDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GetUserDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      tags:
+      - auth
+  /auth/changePassword:
+    post:
+      consumes:
+      - application/json
+      description: Changes user password and makes current token invalid
+      parameters:
+      - description: User passwords
+        in: body
+        name: passwords
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ChangeUserPasswordDto'
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      tags:
+      - auth
+  /places:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает все места
+      parameters:
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.PlaceDto'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получить все места
+      tags:
+      - places
+    post:
+      consumes:
+      - application/json
+      description: Создает новое место (доступно только администраторам)
+      parameters:
+      - description: Данные нового места
+        in: body
+        name: place
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreatePlaceDto'
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.PlaceDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Создать место
+      tags:
+      - places
+  /places/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Удаляет место по ID
+      parameters:
+      - description: ID места
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Удалить место
+      tags:
+      - places
+  /posts:
+    post:
+      consumes:
+      - application/json
+      description: Создать новое объявление.
+      parameters:
+      - description: Post details
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreatePostDto'
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.PostDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Создать объявление
+      tags:
+      - posts
+  /posts/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает объявление по его айди. Если такого не существует, то
+        возвращает 404.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.PostDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получить объявление по ID.
+      tags:
+      - posts
+  /posts/{id}/booking:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a booking by ID
+      parameters:
+      - description: Booking ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Delete a booking
+      tags:
+      - bookings
+    post:
+      consumes:
+      - application/json
+      description: Забронировать книгу по ID
+      parameters:
+      - description: ID книги
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Забронировать книгу
+      tags:
+      - бронирования
+  /posts/{id}/favorites:
+    delete:
+      description: Удаляет пост из избранного. Если пост не добавлен в избранное,
+        то ничего не происходит.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Удалить пост из избранного
+      tags:
+      - posts
+    put:
+      description: Добавляет пост в избранное. Если пост уже в избранном, то ничего
+        не происходит.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Добавить пост в избранное
+      tags:
+      - posts
+  /posts/{id}/mark-taken:
+    put:
+      consumes:
+      - application/json
+      description: Mark a booking as taken by ID
+      parameters:
+      - description: Booking ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Mark a book as taken
+      tags:
+      - bookings
+  /posts/{postID}/image:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Загружает изображение для рекламной кампании
+      parameters:
+      - description: ID поста
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Файл изображения
+        in: formData
+        name: image
+        required: true
+        type: file
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "415":
+          description: Unsupported Media Type
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Добавление изображения к объявлению
+      tags:
+      - posts
+  /posts/available:
+    get:
+      consumes:
+      - application/json
+      description: Получить все доступные посты. Есть возможность отфильтровать.
+      parameters:
+      - description: Post genre
+        in: query
+        name: genre
+        type: string
+      - description: Post condition
+        in: query
+        name: condition
+        type: string
+      - description: Post publication year
+        in: query
+        name: publicationYear
+        type: string
+      - description: Post place id
+        in: query
+        name: placeId
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.PostDto'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получить все доступные посты
+      tags:
+      - posts
+  /posts/booked:
+    get:
+      consumes:
+      - application/json
+      description: Получить все посты, забронированные пользователем.
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.PostDto'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получить все забронированные посты
+      tags:
+      - posts
+  /posts/favorites:
+    get:
+      consumes:
+      - application/json
+      description: Получить все избранные посты пользователя.
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.PostDto'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получить все избранные посты
+      tags:
+      - posts
+  /posts/my:
+    get:
+      consumes:
+      - application/json
+      description: Получить все объявления пользователя.
+      parameters:
+      - default: all
+        description: Post status
+        enum:
+        - available
+        - booked
+        - taken
+        - all
+        in: query
+        name: status
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.PostToGetDto'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получить объявления пользователя
+      tags:
+      - posts
+  /posts/search:
+    get:
+      consumes:
+      - application/json
+      description: Поиск постов по названию или автору.
+      parameters:
+      - description: Search query
+        in: query
+        name: query
+        required: true
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.PostDto'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Поиск постов по названию или автору
+      tags:
+      - posts
+  /reviews:
+    post:
+      consumes:
+      - application/json
+      description: Создает отзыв по email пользователя
+      parameters:
+      - description: Review to create
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ReviewToCreateDto'
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Создание нового отзыва (от пользователя к пользователю)
+      tags:
+      - reviews
+  /users:
+    post:
+      consumes:
+      - application/json
+      description: Creates new user and returns it
+      parameters:
+      - description: User data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateUserDto'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.GetUserDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      summary: Создание пользователя
+      tags:
+      - user
+  /users/{username}:
+    get:
+      description: Returns user profile by username (requires JWT in "Bearer" header)
+      parameters:
+      - description: Username
+        in: path
+        name: username
+        required: true
+        type: string
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserWithRatingDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получить профиль пользователя (по нику)
+      tags:
+      - user
+  /users/{username}/reviews:
+    get:
+      description: Возвращает список отзывов для указанного пользователя (по username)
+      parameters:
+      - description: Username
+        in: path
+        name: username
+        required: true
+        type: string
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.ReviewToGetDto'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получение отзывов для пользователя
+      tags:
+      - reviews
+  /users/bind_token:
+    post:
+      consumes:
+      - application/json
+      description: Биндит к юзеру токен мобильного устройства
+      parameters:
+      - description: Token data
+        in: body
+        name: token
+        required: true
+        schema:
+          $ref: '#/definitions/dto.BindTokenDto'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      summary: Бинд токена для уведомлений
+      tags:
+      - user
+  /users/me:
+    get:
+      description: Returns user profile (requires JWT in "Bearer" header)
+      parameters:
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserWithRatingDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Получить профиль пользователя (свой)
+      tags:
+      - user
+    patch:
+      description: Updates user profile and returns it (requires JWT in "Bearer" header)
+      parameters:
+      - description: User data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateUserDto'
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GetUserDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/exceptions.Error_'
+      security:
+      - BearerAuth: []
+      summary: Обновить профиль.
+      tags:
+      - user
+swagger: "2.0"

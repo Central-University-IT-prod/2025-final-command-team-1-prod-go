@@ -1,0 +1,115 @@
+x-def-logging: &default-logging
+  logging:
+    driver: "loki"
+    options:
+      loki-url: "http://localhost:3100/loki/api/v1/push"
+      loki-batch-size: "100"
+      loki-retries: 2
+      loki-max-backoff: 1000ms
+      loki-timeout: 1s
+
+services:
+    loki:
+      hostname: loki
+      image: grafana/loki:latest
+      environment:
+        TZ: ${SYSTEM_TIMEZONE:-Europe/Moscow}
+      ports:
+        - "3100:3100"
+      command: -config.file=/etc/loki/local-config.yaml
+      networks:
+          - net1
+
+    prometheus:
+        image: prom/prometheus
+        ports:
+          - "9090:9090"
+        volumes:
+          - ./prometheus_data/prometheus.yml:/etc/prometheus/prometheus.yml
+        command:
+          - '--config.file=/etc/prometheus/prometheus.yml'
+        networks:
+          - net1
+
+    prod:
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      depends_on:
+        - prometheus
+        - grafana
+        - postgres
+        - redis
+      <<: *default-logging
+      ports:
+        - 8000:8000
+      environment:
+        - DB_HOST=postgres
+        - DB_PORT=5432
+        - DB_USER=postgres
+        - DB_PASSWORD=postgres
+        - DB_NAME=postgres
+        - JWT_SECRET=dfnjkahfjdasnfjksdnjvdnsk
+        - REDIS_CONNECTION=redis:6379
+        - S3_ENDPOINT=https://prod-stupidcabbage.storage.yandexcloud.net
+        - S3_AWS_ACCESS_KEY_ID=YCAJEOnpOoRJWqmJGTUqZEWJp
+        - S3_AWS_SECRET_ACCESS_KEY=REDACTED
+        - S3_REGION=ru-central1
+        - YANDEX_OAUTH_TOKEN=REDACTED
+        - YANDEX_CATALOG_ID=b1g92cb4pm03ifpa6tiv
+        - CHAT_BOT_PROMPT="Ты чат бот сервиса по обмену книг между студентами и преподавателями Центрального Университета. Отвечай только на вопросы связанные с выбором книг, жанром книг и все связанным с книгами. Если пользователь спрашивает что-то несвязанное с книгами - отвечай, что не можешь ответить на этот запрос."
+        # - FIREBASE_PATH_TO_CREDENTIALS=./prod-cc088-firebase-adminsdk-fbsvc-426ed71838.json
+      networks:
+        - net1
+  
+    grafana:
+      image: grafana/grafana
+      container_name: grafana
+      environment:
+        - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      volumes:
+        - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      ports:
+        - 3000:3000
+      networks:
+        - net1
+
+    postgres:
+      image: postgres:14.1-alpine
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=postgres
+      ports:
+        - 5432:5432
+      volumes: 
+        - postgres:/var/lib/postgresql/data
+      networks:
+        - net1
+
+    redis:
+      image: redis:latest
+      restart: always
+      ports:
+        - "6379:6379"
+      volumes:
+        - cache:/data
+      environment:
+        - REDIS_PORT=6379
+        - REDIS_DATABASES=16
+      depends_on: 
+        - postgres
+      networks:
+        - net1
+
+networks:
+  net1:
+    name: net1
+    driver: bridge
+
+volumes:
+  postgres:
+    name: postgres
+    driver: local
+  cache:
+    driver: local
